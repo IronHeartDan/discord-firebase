@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import './App.css';
-import Chat from './Chat';
-import Sidebar from './Sidebar';
-import Login from './Login';
-import { auth } from './Firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, selectUser } from './features/userSlice';
+import React, { useEffect } from "react";
+import "./App.css";
+import Chat from "./Chat";
+import Sidebar from "./Sidebar";
+import Login from "./Login";
+import { auth } from "./Firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectUser } from "./features/userSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,28 +19,25 @@ function App() {
             uid: authUser.uid,
             photo: authUser.photoURL,
             email: authUser.email,
-            displayName: authUser.displayName
-            })
+            displayName: authUser.displayName,
+          })
         );
       } else {
         dispatch(logout());
       }
-
     });
-
   }, [dispatch]);
-
 
   return (
     <div className="app">
       {user ? (
         <>
           <Sidebar />
-          <Chat/>
+          <Chat />
         </>
       ) : (
-          <Login />
-        )}
+        <Login />
+      )}
     </div>
   );
 }
